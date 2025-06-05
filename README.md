@@ -1,2 +1,2 @@
 # Reference-2025
-Competitive Programming Reference 
+Competitive Programming Reference  <3
