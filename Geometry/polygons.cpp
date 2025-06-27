@@ -42,6 +42,43 @@ bool inPolygon(vector<pt> p, pt a, bool strict = true) {
     }
     return numCrossings & 1; // inside if odd number of crossings
 }
+// 1 -> point out of polygon
+// 0 -> point on border of polygon
+// -1 -> point inside polygon
+int inPolygonlg(pt pp, vector<pt> &v) // O(log(N))
+{
+  int n = v.size();
+  int o1 = orient(v[0], v[1], pp);
+  int o2 = orient(v[0], v[n - 1], pp);
+  if (o1 == 0 && onSegment(v[0], v[1], pp))
+    return 0;
+  else if (o2 == 0 && onSegment(v[0], v[n - 1], pp))
+    return 0;
+  else if (o1 < 0 || o2 > 0)
+    return 1;
+  int l = 0, r = n - 1;
+  int ans = 1;
+  while (l <= r)
+  {
+    int mid = l + (r - l) / 2;
+    int o = orient(v[0], v[mid], pp);
+    if (o > 0)
+    {
+      ans = mid;
+      l = mid + 1;
+    }
+    else
+    {
+      r = mid - 1;
+    }
+  }
+  int oo = orient(v[ans], v[(ans + 1) % n], pp);
+  if (oo > 0)
+    return -1;
+  else if (oo == 0 && onSegment(v[ans], v[(ans + 1) % n], pp))
+    return 0;
+  return 1;
+}
  
 angle_t  moveTo(angle_t a, pt newD) {
     // check that segment [DD’] doesn’t go through the origin
