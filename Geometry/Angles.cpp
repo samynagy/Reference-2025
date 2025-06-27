@@ -22,3 +22,24 @@ ld orientedAngle(pt a, pt b, pt c) {
     else
         return 2*M_PI - angle(b-a, c-a);
 }
+// amplitude travelled around point A, from P to Q
+ld angleTravelled(pt a, pt p, pt q) {
+    double ampli = angle(p-a, q-a);
+    if (orient(a,p,q) > 0) return ampli;
+    else return -ampli;
+}
+ 
+bool half(pt p) {
+    return p.y > 0 || (p.y == 0 && p.x < 0);
+}
+ 
+struct angle_t {
+    pt d; int t = 0; // direction and number of full turns
+    angle_t t180() {return {-d, t + half(d)};}
+    angle_t t360() {return {d, t+1};}
+};
+ 
+bool operator <(angle_t a, angle_t b) {
+    return make_tuple(a.t, half(a.d), 0) <
+           make_tuple(b.t, half(b.d), cross(a.d,b.d));
+}
