@@ -9,7 +9,14 @@ typedef complex<T> pt;
  
 bool operator==(pt a, pt b) {return fabs(a.x - b.x) < EPS && fabs(a.y - b.y) < EPS;}
 bool operator!=(pt a, pt b) {return !(a == b);}
- 
+istream &operator>>(istream &in, pt &a)
+{
+  T real, imag;
+  in >> real >> imag;
+  a = pt(real, imag);
+  return in;
+}
+
 int sgn(T val) {
     return (T(0) < val) - (val < T(0));
 }
