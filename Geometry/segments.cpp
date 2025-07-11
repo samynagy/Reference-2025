@@ -1,13 +1,16 @@
 //////////////////////////////////////////  SEGMENTS   //////////////////////////////////////////
- 
+
+// checks if a point P lies on the disk of diameter [AB]
 bool inDisk(pt a, pt b, pt p) {
     return dot(a-p, b-p) <= EPS;
 }
- 
+
+// checks if the point is on Segment
 bool onSegment(pt a, pt b, pt p) {
     return fabsl(orient(a,b,p)) <= EPS && inDisk(a,b,p);
 }
- 
+
+// gets point of intersections (out) and returns bool
 bool properInter(pt a, pt b, pt c, pt d, pt &out) {
     T oa = orient(c,d,a),
             ob = orient(c,d,b),
@@ -20,7 +23,8 @@ bool properInter(pt a, pt b, pt c, pt d, pt &out) {
     }
     return false;
 }
- 
+
+// all points of intersection between two segments
 set<pair<ld,ld>> inters(pt a, pt b, pt c, pt d) {
     set<pair<ld,ld>> s;
     pt out;
@@ -40,7 +44,7 @@ set<pair<ld,ld>> inters(pt a, pt b, pt c, pt d) {
  
     return s;
 }
- 
+// Distance from Segment to Point
 ld segPoint(pt a, pt b, pt p) {
     if (a != b) {
         line l(a,b);
@@ -49,7 +53,8 @@ ld segPoint(pt a, pt b, pt p) {
     }
     return min(abs(p-a), abs(p-b)); // otherwise distance to A or B
 }
- 
+
+// Distance from Segment to Segment
 ld segSeg(pt a, pt b, pt c, pt d) {
     pt dummy;
     if (properInter(a,b,c,d,dummy))
