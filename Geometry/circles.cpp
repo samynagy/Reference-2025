@@ -21,7 +21,7 @@ int circleLine(pt o, double r, line l, pair<pt,pt> &out) {
 // Returns number of points intersection & Those points
 int circleCircle(pt o1, T r1, pt o2, T r2, pair<pt,pt> &out) {
     pt d=o2-o1; T d2=sq(d);
-    if (d2 == 0) {assert(r1 != r2); return 0;} // concentric circles
+    if (d2 == 0) {assert(r1 != r2); return 0;} // if two Circles identical
     T pd = (d2 + r1*r1 - r2*r2)/2; // = |O_1P| * d
     T h2 = r1*r1 - pd*pd/d2; // = hˆ2
     if (h2 >= 0) {
