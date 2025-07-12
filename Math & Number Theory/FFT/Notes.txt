@@ -1,0 +1,8 @@
+when you write fft to count something make sure you want the count actully or you just need to check if this value appered in final answer or not ?
+if you don't care of count make sure to minmize the answer in fft function in last loop with min 
+to be like that :
+
+    for (int i = 0; i < n; i++)
+        result[i] = round(fa[i].real());
+    
+    for(auto &i : result)i=min(i , 1ll);
