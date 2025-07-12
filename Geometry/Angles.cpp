@@ -28,7 +28,7 @@ ld angleTravelled(pt a, pt p, pt q) {
     if (orient(a,p,q) > 0) return ampli;
     else return -ampli;
 }
- 
+// if points above X-Axis
 bool half(pt p) {
     return p.y > 0 || (p.y == 0 && p.x < 0);
 }
