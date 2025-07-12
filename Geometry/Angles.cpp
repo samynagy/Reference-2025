@@ -15,7 +15,7 @@ ld angle(pt v, pt w) {
     return acos(clamp(dot(v,w) / abs(v) / abs(w), (T)-1.0,(T)1.0));
 }
  
-//calc BAC angle
+//calc BAC angle Counter Clock-Wise
 ld orientedAngle(pt a, pt b, pt c) {
     if (orient(a,b,c) >= 0)
         return angle(b-a, c-a);
