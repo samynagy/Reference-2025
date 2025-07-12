@@ -1,11 +1,13 @@
 //////////////////////////////////////////  CIRCLES   //////////////////////////////////////////
- 
+
+// Determining circle center and radius
 pair<pt, T> circumCircle(pt a, pt b, pt c) {
     b = b-a, c = c-a; // consider coordinates relative to A
     assert(cross(b,c) != 0); // no circumcircle if A,B,C aligned
     return {a + perp(b*sq(c) - c*sq(b))/cross(b,c)/(T)2, abs(perp(b*sq(c) - c*sq(b))/cross(b,c)/(T)2)};
 }
- 
+
+// Return number of points of intersection & out contains the points of intersections 
 int circleLine(pt o, double r, line l, pair<pt,pt> &out) {
     double h2 = r*r - l.sqDist(o);
     if (h2 >= 0) { // the line touches the circle
@@ -15,7 +17,8 @@ int circleLine(pt o, double r, line l, pair<pt,pt> &out) {
     }
     return 1 + sgn(h2);
 }
- 
+
+// Returns number of points intersection & Those points
 int circleCircle(pt o1, T r1, pt o2, T r2, pair<pt,pt> &out) {
     pt d=o2-o1; T d2=sq(d);
     if (d2 == 0) {assert(r1 != r2); return 0;} // concentric circles
