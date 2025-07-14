@@ -1,7 +1,6 @@
 
 with this apporach you can find the count of subarrays have sum X 
 
-
 /**
     how to solve this problem with fft
     count all sub arrays sums
